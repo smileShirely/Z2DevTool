@@ -71,8 +71,8 @@ const mb = menubar({
   icon: path.join(__dirname, '/../assets/IconTemplate.png'),
   width: 580,
   height: 500,
-  resizable: false,
-  showDockIcon: false,
+  resizable: true,
+  showDockIcon: true,
   preloadWindow: true
 })
 

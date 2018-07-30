@@ -1,49 +1,94 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+    <div class="tab-group">
+      <div class="tab-item">
+        <span class="icon icon-cancel icon-close-tab"></span>
+        Tab
+      </div>
+      <div class="tab-item active">
+        <span class="icon icon-cancel icon-close-tab"></span>
+        Tab active
+      </div>
+      <div class="tab-item">
+        <span class="icon icon-cancel icon-close-tab"></span>
+        Tab
+      </div>
+      <div class="tab-item tab-item-fixed">
+        <span class="icon icon-plus"></span>
+      </div>
+    </div>
     <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
+      <nav class="nav-group">
+        <h5 class="nav-group-title">Favorites</h5>
+        <a class="nav-group-item active">
+          <span class="icon icon-home"></span>
+          connors
+        </a>
+        <span class="nav-group-item">
+          <span class="icon icon-download"></span>
+          Downloads
         </span>
-        <system-information></system-information>
-      </div>
-
-      <div class="right-side">
-        <div class="doc">
-          <div class="title">Getting Started</div>
-          <p>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
-          </p>
-          <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
-        </div>
-        <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
-          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
-        </div>
-      </div>
+        <span class="nav-group-item">
+          <span class="icon icon-folder"></span>
+          Documents
+        </span>
+        <span class="nav-group-item">
+          <span class="icon icon-signal"></span>
+          AirPlay
+        </span>
+        <span class="nav-group-item">
+          <span class="icon icon-print"></span>
+          Applications
+        </span>
+        <span class="nav-group-item">
+          <span class="icon icon-cloud"></span>
+          Desktop
+        </span>
+      </nav>
     </main>
   </div>
 </template>
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
-
+  import TabGroup from 'electron-tabs';
   export default {
     name: 'landing-page',
     components: { SystemInformation },
+    created() {
+      // this.getGroup();
+    },
+    mounted() {
+      // this.getGroup();
+    },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
+      },
+      getGroup() {
+        
+        let tabGroup = new TabGroup({
+          newTab: {
+              title: 'New Tab'
+          }
+        });
+        tabGroup.addTab({
+            title: 'Google',
+            src: '/',
+        });
+        tabGroup.addTab({
+            title: "Electron",
+            src: "/",
+            visible: true,
+            active: true
+        });
       }
     }
   }
 </script>
 
 <style>
+  /* @import './test.css'; */
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   * {
@@ -62,7 +107,7 @@
         rgba(229, 229, 229, .9) 100%
       );
     height: 100vh;
-    padding: 60px 80px;
+    /* padding: 60px 80px; */
     width: 100vw;
   }
 

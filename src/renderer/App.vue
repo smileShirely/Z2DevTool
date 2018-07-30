@@ -6,7 +6,9 @@
 
 <script>
   export default {
-    name: 'z2devtool'
+    name: 'z2devtool',
+      methods: {
+      }
   }
 </script>
 
