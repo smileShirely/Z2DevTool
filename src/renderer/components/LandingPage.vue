@@ -1,17 +1,10 @@
 <template>
   <div id="wrapper">
     <div class="tab-group">
-      <div class="tab-item">
-        <span class="icon icon-cancel icon-close-tab"></span>
-        Tab
+      <div class="tab-item" :key="index" v-for="(item, index) in tabList">
+        {{ index }}
+        <span class="icon icon-cancel icon-close-tab" @click="deleteTable(index)"></span>
       </div>
-      <div class="tab-item active">
-        <span class="icon icon-cancel icon-close-tab"></span>
-        Tab active
-      </div>
-      <div class="tab-item">
-        <span class="icon icon-cancel icon-close-tab"></span>
-        Tab
       <div class="tab-item tab-item-fixed" @click="addTable">
         <span class="icon icon-plus"></span>
       </div>
@@ -57,6 +50,22 @@
   export default {
     name: 'landing-page',
     components: { SystemInformation },
+    data() {
+      return {
+        tabList: [
+          [
+            'tab1',
+            'tab2',
+            'tab3'
+          ],
+          [
+            'tab1',
+            'tab2',
+            'tab3'            
+          ]
+        ],
+      };
+    },
     created() {
       // this.getGroup();
     },
@@ -64,11 +73,22 @@
       // this.getGroup();
     },
     methods: {
+      deleteTable(index) {
+        this.tabList.splice(index, 1);
+      },
+      addTable() {
+        this.tabList.push(          
+          [
+            'tab1',
+            'tab2',
+            'tab3'            
+          ]
+        );
+      },
       open (link) {
         this.$electron.shell.openExternal(link)
       },
       getGroup() {
-        
         let tabGroup = new TabGroup({
           newTab: {
               title: 'New Tab'
@@ -124,7 +144,7 @@
     justify-content: space-between;
   }
 
-  main > div { flex-basis: 50%; }
+  /* main > div { flex-basis: 50%; } */
 
   .left-side {
     display: flex;
@@ -171,5 +191,24 @@
   .doc button.alt {
     color: #42b983;
     background-color: transparent;
+  }
+
+  /*
+  * 中间内容区域样式
+  */
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .container-box {
+    width: 100%;
+    display: flex;
+  }
+  .content-box {
+    flex: 1;
+    margin: 10px;
+    position: relative;
+    border: 1px solid #dedddd;
+    box-shadow: 0px 0px 10px #dedddd;
   }
 </style>
