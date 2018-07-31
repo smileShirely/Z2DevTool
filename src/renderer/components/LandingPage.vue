@@ -12,9 +12,11 @@
       <div class="tab-item">
         <span class="icon icon-cancel icon-close-tab"></span>
         Tab
+      <div class="tab-item tab-item-fixed" @click="addTable">
+        <span class="icon icon-plus"></span>
       </div>
       <div class="tab-item tab-item-fixed">
-        <span class="icon icon-plus"></span>
+        <span class="icon icon-menu"></span>
       </div>
     </div>
     <main>
