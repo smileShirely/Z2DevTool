@@ -40,6 +40,14 @@
           Desktop
         </span>
       </nav>
+      <div class="container">
+        <div class="container-box" :key="index" v-for="(item, index) in tabList">
+          <div class="content-box" :key="tab" v-for="(item, tab) in item">
+            <p>{{ tab }}</p>
+          </div>
+        </div>
+      </div>
+      <webview id="foo" src="https://www.github.com/" style="display:inline-block; width:1240px; height:480px"></webview>
     </main>
   </div>
 </template>
